@@ -35,7 +35,7 @@ def clean_shipments(raw, medians=None):
     med_inr = raw_new["declared_value_inr"].median()
 
     # use fillna for 3 medians:
-    raw_new["distance_km"] = raw_new["distance_km"].fillna(med_dis)
+    raw_new["distance_km"] = raw_new["distance_km"].fillna(round(med_dis,2))
     raw_new["parcel_weight_kg"] = raw_new["parcel_weight_kg"].fillna(med_weight)
     raw_new["declared_value_inr"] = raw_new["declared_value_inr"].fillna(med_inr)
 
