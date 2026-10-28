@@ -130,7 +130,7 @@ def corr_matrix():
     df_new.to_csv("./outputs/part_a_correlations.csv", index=False)
     
 
-# main()
-# checks()
-# delay_evidence()
-# corr_matrix()
+main()
+checks()
+delay_evidence()
+corr_matrix()
