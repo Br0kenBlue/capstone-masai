@@ -17,6 +17,6 @@
     At 600km+ distance, delay rate is 0.8523, which means almost all deliveries are delayed.
 
 (iv) the three columns most strongly correlated with delivery_hours — rank the columns of part_a_correlations.csv by absolute correlation, exclude delivery_hours itself, and quote each signed value to four decimals
-    1. promised_hours = 0.837
-    2. is_delayed - distance_km = 0.545
-    3. distance_km = 0.401
+1. promised_hours = 0.837
+2. is_delayed - distance_km = 0.545
+3. distance_km = 0.401
