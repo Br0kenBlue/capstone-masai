@@ -20,3 +20,27 @@
 1. promised_hours = 0.837
 2. is_delayed - distance_km = 0.545
 3. distance_km = 0.401
+
+# Part B — Delivery-Hours Regression
+
+**Model Results(Regression)**
+
+Baseline r2 = -0.01604890671528536
+Oddly enough Baseline was the only result with a negative r2 score. r2 score being close to 0 means that val predictions end up being fairly close to the mean.
+
+From validation set, LinearRegression comes out to be the best model, although it ran close with GradientBoostRegressor.
+LinearRegression had RMSE of 4.523542229931055
+
+Decision tree regressor showed highest bias at unlimited depth with train_rmse = 0
+it also showed high variance at depth = 1 with train_rmse = 11.633435592329608
+val_rmse - train_rmse = ~1.8 for depth = 1
+val_rmse - train_rmse = 7.172739946027135 for depth = unlimited
+
+For GradientBoostRegressor the best learning rate was 0.1
+with learning_rate = 0.01, the model was too slow and had high rmse, as well as r2 score at 0.7159690801430694
+with learning_rate = 1.0, the model showed rmse and r2 score slight worse than it being 0.1, and thus it was overshooting.
+
+in cross validation score, GradientBoostRegressor performed slightly better than LinearRegression.
+Which is contrary to the results found in validation scores.
+Shipping either of those models would be fine since both are performing well.
+I would ship LinearRegression in this case. Since both are performing similarly well, its better to ship LinearRegression model because its comparatively easier and cheaper to train, would take time and cost less in server costs.
