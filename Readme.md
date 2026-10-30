@@ -44,3 +44,26 @@ in cross validation score, GradientBoostRegressor performed slightly better than
 Which is contrary to the results found in validation scores.
 Shipping either of those models would be fine since both are performing well.
 I would ship LinearRegression in this case. Since both are performing similarly well, its better to ship LinearRegression model because its comparatively easier and cheaper to train, would take time and cost less in server costs.
+
+# Part C — Delay Classifier and Alert Threshold
+**Model Results(Classification)**
+
+- Blind Baseline: Blind Baseline has no FP and TP which means it never predicted a positive outcome at all, and thus doesn't have any score for precision, recall, and f1. Thus Blind Baseline is a useless measure in this case.
+
+The 5 noise columns have a combines importance score of 0.2245. They all fall outside the top 7 by f-score.
+
+K-table shows that the best validation f1 score was for k=7 while the worst was k=5, which shows that k=7 is likely the best choice in this case.
+
+In case of tuning, the best model was the untuned model with 7 features.
+The validation set in this case wasn't best used for tuning, letting the model run on the entire training set helped the model make the best generalizations.
+
+The chosen threshold was 5 with precision at 0.79 and recall at 0.83. This threshold having the best f1_score meant that this threshold will likely give the best results. With higher threshold showing high precision but lower recall and vice versa.
+
+In the final test with test data the scores were:
+- accuracy = 0.87
+- precision = 0.69
+- recall = 0.75
+- f1 = 0.72
+With slightly higher FP than validation, and other confusion matrix results being relatively similar to validation test.
+With only 41 delayed parcels its difficult to really gauge how this model will perform in the wild, and precision being below 0.7 is slightly concerning.
+But accuracy being at 0.87 means the model is fairly confident in its predictions.
