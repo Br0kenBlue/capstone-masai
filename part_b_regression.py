@@ -38,7 +38,7 @@ def checks():
     df = pd.DataFrame({
         "metric":["train_rows", "val_rows", "test_rows", "train_scaled_max_abs_mean", "test_scaled_max_abs_mean"],
         "value":[len(x_train), len(x_val), len(x_test), np.abs(x_train_scaled.mean(axis=0)).max(), np.abs(x_test_scaled.mean(axis=0)).max()],
-    })
+    }).round(4)
 
     df.to_csv("./outputs/part_b_checks.csv", index=False)
 
@@ -52,7 +52,7 @@ def baseline():
     mse = mean_squared_error(y_val, y_val_pred)
     rmse = np.sqrt(mean_squared_error(y_val, y_val_pred))
 
-    return(["mean_baseline", "val", mae, mse, rmse, r2])
+    return(["mean_baseline", "val", round(mae,4), round(mse,4), round(rmse,4), round(r2,4)])
     
 def dtr_calc():
     depth = [1,2,3,4,6,8,12,None]
@@ -77,7 +77,7 @@ def dtr_calc():
         "max_depth":[1,2,3,4,6,8,12,"unlimited"],
         "train_rmse":train_rmse_list,
         "val_rmse":val_rmse_list,
-    })
+    }).round(4)
 
     df.to_csv("./outputs/part_b_tree_depth.csv", index=False)
 
@@ -111,7 +111,7 @@ def candidate_models():
 
     results.append(baseline())
 
-    df = pd.DataFrame(results, columns=column_names)
+    df = pd.DataFrame(results, columns=column_names).round(4)
 
     df.to_csv("./outputs/part_b_metrics.csv", index=False)
 
@@ -133,7 +133,7 @@ def lr_experiment():
 
         results.append([i, rmse, r2])
 
-    df = pd.DataFrame(results, columns=column_names)
+    df = pd.DataFrame(results, columns=column_names).round(4)
 
     df.to_csv("./outputs/part_b_gb_learning_rate.csv", index=False)
 
@@ -153,7 +153,7 @@ def cv_comp():
         scores = cross_val_score(model, x_fold, y_fold, cv=kf)
         results.append([name, scores.mean(), scores.std()])
 
-    df = pd.DataFrame(results, columns=columns_names)
+    df = pd.DataFrame(results, columns=columns_names).round(4)
     df.to_csv("./outputs/part_b_cv.csv", index=False)
 
 def final_model():
@@ -171,7 +171,7 @@ def final_model():
     rmse = np.sqrt(mse)
     r2 = r2_score(y_test, y_test_pred)
 
-    res = ["LinearRegression","test",mae,mse,rmse,r2]
+    res = ["LinearRegression","test",round(mae,4),round(mse,4),round(rmse,4),round(r2,4)]
 
     with open('./outputs/part_b_metrics.csv', mode='a', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)

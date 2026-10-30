@@ -111,21 +111,21 @@ def delay_evidence():
         "group":["Economy","Express","Standard",1,2,3,"0-200","201-400","401-600","601+"],
         "shipments":[econ_total, exp_total, std_total, hub_tier1, hub_tier2, hub_tier3, dist_band1, dist_band2, dist_band3, dist_band4],
         "delayed":[econ_delay, exp_delay, std_delay, tier1_delay, tier2_delay, tier3_delay, db1_delay, db2_delay, db3_delay, db4_delay],
-        "delay_rate":[round(econ_delay/econ_total,4), round(exp_delay/exp_total,4), round(std_delay/std_total,4), round(tier1_delay/hub_tier1,4), round(tier2_delay/hub_tier2,4), round(tier3_delay/hub_tier3,4), round(db1_delay/dist_band1,4), round(db2_delay/dist_band2,4), round(db3_delay/dist_band3,4), round(db4_delay/dist_band4,4)],
-    })
+        "delay_rate":[econ_delay/econ_total, exp_delay/exp_total, std_delay/std_total, tier1_delay/hub_tier1, tier2_delay/hub_tier2, tier3_delay/hub_tier3, db1_delay/dist_band1, db2_delay/dist_band2, db3_delay/dist_band3, db4_delay/dist_band4],
+    }).round(4)
 
     df_delay.to_csv('./outputs/part_a_delay_by_group.csv', index=False)
 
 def corr_matrix():
     df = pd.read_csv("./data/modelling_table.csv")
-    dhph = round(df["delivery_hours"].corr(df["promised_hours"]),3)
-    dhdk = round(df["delivery_hours"].corr(df["distance_km"]),3)
-    deldk = round(df["is_delayed"].corr(df["distance_km"]),3)
+    dhph = df["delivery_hours"].corr(df["promised_hours"])
+    dhdk = df["delivery_hours"].corr(df["distance_km"])
+    deldk = df["is_delayed"].corr(df["distance_km"])
 
     df_new = pd.DataFrame({
         "Correlation_type":["corr(delivery_hours, promised_hours)", "corr(delivery_hours, distance_km)", "corr(is_delayed, distance_km)"],
         "Values":[dhph, dhdk, deldk]
-    })
+    }).round(4)
 
     df_new.to_csv("./outputs/part_a_correlations.csv", index=False)
     
