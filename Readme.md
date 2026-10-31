@@ -169,10 +169,11 @@ Hub23   -   0.44<br>
 Hub24   -   0.54</p>
 
 Tier mismatches:<br>
-HUB07,Watch,Kolkata,1<br>
-HUB13,Escalate,Nagpur,2<br>
-HUB15,Escalate,Kochi,2<br>
-HUB22,Watch,Dehradun,3<br>
+Hub ID  -   Segment -   Region  -   Hub tier
+HUB07   -   Watch   -   Kolkata -   1<br>
+HUB13   -   Escalate    -   Nagpur  -   2<br>
+HUB15   -   Escalate  -   Kochi    -   2<br>
+HUB22   -   Watch   -   Dehradun    -   3<br>
 
 These tiers should keep track of their deliveries more closely, hire more drivers or get more delivery vehicles if needs. Or change their tier.<br>
 
@@ -192,7 +193,7 @@ For a dataset of 24, it having a cluster with cluster size smaller than 6 means 
 2. Reproducibility - All the functions work without hard coding and any results from this project can be reproduced.
 3. Maintainability - All the code in this repo can be maintained with minimal impact to the actual results. sufficient comments have been added and the documentation here has been extensive.
 4. Consistency - Same steps have been taken for preprocessing during training as well as predictions. shipment_prep.py handles the data cleaning in the same manner regardless of where the data comes from.
-5. Monitorabilit - All the results have been recorded in a consistent manner in csv files in an organised folder.
+5. Monitorability - All the results have been recorded in a consistent manner in csv files in an organised folder.
 
 **Quantities to monitor**
 1. Delays per month
