@@ -169,7 +169,7 @@ Hub23   -   0.44<br>
 Hub24   -   0.54</p>
 
 Tier mismatches:<br>
-Hub ID  -   Segment -   Region  -   Hub tier
+Hub ID  -   Segment -   Region  -   Hub tier<br>
 HUB07   -   Watch   -   Kolkata -   1<br>
 HUB13   -   Escalate    -   Nagpur  -   2<br>
 HUB15   -   Escalate  -   Kochi    -   2<br>
