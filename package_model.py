@@ -1,4 +1,3 @@
-import joblib
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -6,6 +5,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_selection import SelectKBest, f_classif
 from src.shipment_prep import FEATURES, clean_shipments
+import joblib
 
 data = pd.read_csv("./outputs/part_c_final_config.csv").iloc[0]
 max_depth = None if data["max_depth"] == "unlimited" else int(data["max_depth"])
@@ -24,11 +24,11 @@ pipeline.fit(x_train, y_train)
 
 joblib.dump(pipeline, "./models/delay_model.pkl")
 pd.DataFrame({"threshold":[float(data["threshold"])]}).to_csv("./models/delay_threshold.csv", index=False)
-pd.DataFrame({"feature":FEATURES}).to_csv("models/feature_order.csv", index=False)
+pd.DataFrame({"feature":FEATURES}).to_csv("./models/feature_order.csv", index=False)
 i, medians = clean_shipments(pd.read_csv("./data/raw_shipments.csv"))
 pd.DataFrame({"column": list(medians), "median": [round(v, 4) for v in medians.values()]}).to_csv("./models/impute_values.csv", index=False)
 
 reloaded = joblib.load("./models/delay_model.pkl")
 diff = np.abs(reloaded.predict_proba(x_test)[:, 1] - pipeline.predict_proba(x_test)[:, 1]).max()
 pd.DataFrame({"metric": ["test_rows_scored", "reload_max_abs_probability_diff", "threshold"],
-              "value": [len(x_test), diff, float(data["threshold"])]}).round(4).to_csv("outputs/part_d_reload_check.csv", index=False)
+              "value": [len(x_test), diff, float(data["threshold"])]}).round(4).to_csv("./outputs/part_d_reload_check.csv", index=False)

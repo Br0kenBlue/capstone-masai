@@ -89,7 +89,7 @@ fs = pd.DataFrame({"feature": FEATURES, "f_score": sk_all.scores_,
 fs["f_rank"] = fs["f_score"].rank(ascending=False, method="first").astype(int)
 fs["is_noise"] = fs["feature"].isin(NOISE_COLUMNS)
 fs = fs[["feature", "f_score", "f_rank", "rf_importance", "is_noise"]]
-fs.round(4).to_csv("outputs/part_c_feature_scores.csv", index=False)
+fs.round(4).to_csv("./outputs/part_c_feature_scores.csv", index=False)
 noise_share = fs.loc[fs["is_noise"], "rf_importance"].sum()
 print("noise share of random forest importance: ", round(noise_share,4))
 
@@ -106,8 +106,8 @@ def sel():
     pd.DataFrame(sel_rows).round(4).to_csv("./outputs/part_c_selectk.csv", index=False)
 
 # Tuning and looking for the best model
-
-sk7 = SelectKBest(f_classif, k=7).fit(x_train, y_train)
+K = 7
+sk7 = SelectKBest(f_classif, k=K).fit(x_train, y_train)
 xk_train, xk_val = sk7.transform(x_train), sk7.transform(x_val)
 
 grid = {
@@ -146,7 +146,7 @@ chosen = next(n for n in priority if tuning.loc[tuning["search"] == n, "val_f1"]
 params = candidates[chosen][0]
 
 # Final model:
-K = 7
+
 final_model = Pipeline([
     ("selector", SelectKBest(f_classif, k=K)), 
     ("model", RandomForestClassifier(random_state=42, **params))
@@ -168,7 +168,6 @@ pd.DataFrame([{"selector_k": K, "n_estimators": params["n_estimators"],
                "max_depth": "unlimited" if params["max_depth"] is None else params["max_depth"],
                "min_samples_leaf": params["min_samples_leaf"], "threshold": threshold,
                "chosen_from": chosen}]).to_csv("./outputs/part_c_final_config.csv", index=False)
-print("chosen:", chosen, params, "threshold:", threshold)
 
 c_models()
 sel()

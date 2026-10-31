@@ -49,11 +49,12 @@ seg_prof = profile[["segment", "hub_id", "mean_delivery_hours", "delay_rate", "m
 seg_prof_list = seg_prof.groupby("segment").agg(
     hubs=("hub_id", "count"), mean_delivery_hours=("mean_delivery_hours","mean"), delay_rate=("delay_rate", "mean"),
     mean_distance_km=("mean_distance_km", "mean"), mean_n_stops=("mean_n_stops", "mean")
-).reset_index().sort_values("segment").reset_index(drop=True).round(4)
+    ).reset_index().sort_values("segment").reset_index(drop=True).round(4)
 
 seg_prof_list.to_csv("./outputs/segment_profile.csv", index=False)
 
 implication = {1:"Standard", 2:"Watch", 3:"Escalate"}
 seg[seg["segment"] != seg["hub_tier"].map(implication)].to_csv("./outputs/tier_vs_segment_mismatch.csv", index=False)
 
+profile_csv()
 separation()
