@@ -182,8 +182,8 @@ For every 10 delayed parcels, 7.5 are caught.<br>
 
 Of the 48 new parcels, 8 were flagged to be delayed, with all of them needing to be escalated to the hub manager.<br>
 
-<p>*Why K=3?*:<br>
-Even though K=4 and K=5 had shown slightly better results, both of them had at least one cluster that was smaller than 6.<br>
+*Why K=3?*:<br>
+<p>Even though K=4 and K=5 had shown slightly better results, both of them had at least one cluster that was smaller than 6.<br>
 For a dataset of 24, it having a cluster with cluster size smaller than 6 means that those clusters were not meaningfully distinct enough. And thus, K=3 was considered a better choice.</p>
 
 # Production plan
@@ -202,16 +202,17 @@ For a dataset of 24, it having a cluster with cluster size smaller than 6 means 
 **Retraining schedule**
 <p>Models should be retrained with fresh data every 2 weeks(14 days)<br>
 During sale events such as 15-28 september; regional managers should keep a close look into any delays and keep a track of it. In case of underperformance, the models should be trained on new data every 2 days.<br>
-Compare the data with similar sale events from the past.<br>
-*Data-drift*: Data drift here can be due to mismatch in data representations and the features used in different regions.</p>
+Compare the data with similar sale events from the past.</p>
+
+*Data drift*: Data drift here can be due to mismatch in data representations and the features used in different regions.
 
 # Limitations
-<p>*Synthetic data*: The data used in this project is synthetic, as such this is not an accurate representation of the real world application.<br>
-The number of delayed parcels is also quite low(10) so it does not provide the best representation of real world application.</p>
+*Synthetic data*: The data used in this project is synthetic, as such this is not an accurate representation of the real world application.<br>
+The number of delayed parcels is also quite low(10) so it does not provide the best representation of real world application.
 
-<p>*Real-world limitations*: Training data here cannot fully capture the real world limitations for a delivery company.Many factors such as traffic conditions, time of the day for delivery run with their respective locations, driver experience, Number of drivers/vehicles and their availability, time of the year, weather related delays etc. were not accounted for in this project. Those factors can often time be make or break for delivery companies.<br>
-A better way to work would be by comparing the data for deliveries at different time of the year and understand the pattern, thus making different predictions and different recommendations based on dynamic conditions.</p>
+*Real-world limitations*: Training data here cannot fully capture the real world limitations for a delivery company.Many factors such as traffic conditions, time of the day for delivery run with their respective locations, driver experience, Number of drivers/vehicles and their availability, time of the year, weather related delays etc. were not accounted for in this project. Those factors can often time be make or break for delivery companies.<br>
+A better way to work would be by comparing the data for deliveries at different time of the year and understand the pattern, thus making different predictions and different recommendations based on dynamic conditions.
 
-<p>*Very few actual delays*: Very few acual delays are present in the test data set i.e. new_shipments.csv. As such the systems in this project did not get tested to their limits. It's hard to say that this system will be reliable when its deployed in production because the testing was not extensive enough with only 10 delays being present.</p>
+*Very few actual delays*: Very few acual delays are present in the test data set i.e. new_shipments.csv. As such the systems in this project did not get tested to their limits. It's hard to say that this system will be reliable when its deployed in production because the testing was not extensive enough with only 10 delays being present.
 
-<p>*Predictive reasoning*: Some places can have more delays due to rain whereas in some places rain doesn't affect the deliveries at all, but when a regression model is training it only sees the rain data and not that it affects one place more than the others. This sort of data mismatch is difficult to handle and thus this repo does not address that either.</p>
+*Predictive reasoning*: Some places can have more delays due to rain whereas in some places rain doesn't affect the deliveries at all, but when a regression model is training it only sees the rain data and not that it affects one place more than the others. This sort of data mismatch is difficult to handle and thus this repo does not address that either.
