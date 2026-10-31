@@ -4,16 +4,16 @@
 # Data Findings:
 
 (i) which service type is delayed most often and at what rate
-    The most delayed serviced seems to be "Express" with a delay rate of 0.4897.
+The most delayed serviced seems to be "Express" with a delay rate of 0.4897.
 
 (ii) how delay rate changes from Tier 1 to Tier 3
-    Delay rate in tier1 regions is very low at 0.04.
-    Delay rate in tier3 regions is 0.44, almost half of the deliveries seem to be delayed.
+Delay rate in tier1 regions is very low at 0.04.
+Delay rate in tier3 regions is 0.44, almost half of the deliveries seem to be delayed.
 
 (iii) how it changes across distance bands
-    At lowest distance band (0-200km) has a very low delay rate of 0.0219.
-    AS the distance increases, delay rate keeps increasing as well.
-    At 600km+ distance, delay rate is 0.8523, which means almost all deliveries are delayed.
+At lowest distance band (0-200km) has a very low delay rate of 0.0219.
+AS the distance increases, delay rate keeps increasing as well.
+At 600km+ distance, delay rate is 0.8523, which means almost all deliveries are delayed.
 
 (iv) the three columns most strongly correlated with delivery_hours — rank the columns of part_a_correlations.csv by absolute correlation, exclude delivery_hours itself, and quote each signed value to four decimals
 1. promised_hours = 0.837
@@ -62,129 +62,129 @@ In the final test with test data the scores were:
 - accuracy = 0.87
 - precision = 0.69
 - recall = 0.75
-- f1 = 0.72
-With slightly higher FP than validation, and other confusion matrix results being relatively similar to validation test.
-With only 41 delayed parcels its difficult to really gauge how this model will perform in the wild, and precision being below 0.7 is slightly concerning.
-But accuracy being at 0.87 means the model is fairly confident in its predictions.
+- f1 = 0.72<br>
+<p>With slightly higher FP than validation, and other confusion matrix results being relatively similar to validation test.
+With only 41 delayed parcels its difficult to really gauge how this model will perform in the wild, and precision being below 0.7 is slightly concerning.<br>
+But accuracy being at 0.87 means the model is fairly confident in its predictions.</p>
 
 # How to run
-first execute the following code:
+first execute the following code:<br>
 
-pip install -r requirements.txt
-    This will make sure that your environment has the exact libraries installed as used in this project.
+pip install -r requirements.txt<br>
+This will make sure that your environment has the exact libraries installed as used in this project.<br>
 
-python generate_data.py
-    This will generate the data as is asked.
+python generate_data.py<br>
+This will generate the data as is asked.<br>
 
-python part_a_clean_eda.py
-    This is start the first part of the project which is EDA - elementary data analysis
-    it makes use of a custom file shipment_prep.py in ./src/ to clean the data as is provided.
-    This will create 3 new files in ./outputs/:
-        part_a_checks.csv
-        part_a_correlations.csv
-        part_a_delay_by_group.csv
+<p>python part_a_clean_eda.py<br>
+This is start the first part of the project which is EDA - elementary data analysis<br>
+it makes use of a custom file shipment_prep.py in ./src/ to clean the data as is provided.<br>
+This will create 3 new files in ./outputs/:</p>
+- part_a_checks.csv
+- part_a_correlations.csv
+- part_a_delay_by_group.csv
 
-python part_b_regression.py
-    This piece of code does all the regression tasks of the project.
-    It train 4 different regression models on the given data and outputs the results.
-    It also runs an experimental LinearRegression model to check which learning rate works the best in this case.
-    It runs a cross validation score check on the data using LinearRegression and GradientBoostRegressor with train + validation set data.
-    Then finally it runs the final chosen model,
-    In this case the final chosen model was LinearRegression because of best score in RMSE of 4.5235
-    This file contains a lot of functions but all functions have been initialized at the bottom of the file.
-    This will create following files in ./outputs/:
-        part_b_checks.csv
-        part_b_cv.csv
-        part_b_gb_learning_rate.csv
-        part_b_metrics.csv
-        part_b_tree_depth.csv
+<p>python part_b_regression.py<br>
+This piece of code does all the regression tasks of the project.<br>
+It train 4 different regression models on the given data and outputs the results.<br>
+It also runs an experimental LinearRegression model to check which learning rate works the best in this case.<br>
+It runs a cross validation score check on the data using LinearRegression and GradientBoostRegressor with train + validation set data.<br>
+Then finally it runs the final chosen model.<br>
+In this case the final chosen model was LinearRegression because of best score in RMSE of 4.5235<br>
+This file contains a lot of functions but all functions have been initialized at the bottom of the file.<br>
+This will create following files in ./outputs/:</p>
+- part_b_checks.csv
+- part_b_cv.csv
+- part_b_gb_learning_rate.csv
+- part_b_metrics.csv
+- part_b_tree_depth.csv<br>
 
-python part_c_classification.py
-    This piece of code does all the classification tasks of the project.
-    It trains DecisionTreeClassifier, LogisticRegression, and RandomForestClassifier on the given data.
-    It trains multiple DecisionTreeClassifier with different depth values and selects the best of them.
-    It trains a RandomForestClassifier with selectkbest for multiple different values of k.
-    Now K = 7 is chosen for the rest of the file.
-    Now the training and validation data are transformed using selectkbest
-    GridSeachcv and RandomizedSearchcv are also trained with a given grid. 
-    A default RandomForestClassifier is also trained.
-    Now we select the best params based on the previous three models GridSearchcv, RandomizedSearchcv, and RandomForestClassifier
-    Now we run a final model based on the tuning results.
-    Final model chosen is a RandomForestClassifier with selector using selectkbest at k=7
-    This will create following files in ./outputs/:
-        part_c_feature_scores.csv
-        part_c_final_config.csv
-        part_c_final_test.csv
-        part_c_models.csv
-        part_c_selectk.csv
-        part_c_threshold.csv
-        part_c_tuning.csv
+<p>python part_c_classification.py<br>
+This piece of code does all the classification tasks of the project.<br>
+It trains DecisionTreeClassifier, LogisticRegression, and RandomForestClassifier on the given data.<br>
+It trains multiple DecisionTreeClassifier with different depth values and selects the best of them.<br>
+It trains a RandomForestClassifier with selectkbest for multiple different values of k.<br>
+Now K = 7 is chosen for the rest of the file.<br>
+Now the training and validation data are transformed using selectkbest<br>
+GridSeachcv and RandomizedSearchcv are also trained with a given grid.<br>
+A default RandomForestClassifier is also trained.<br>
+Now we select the best params based on the previous three models GridSearchcv, RandomizedSearchcv, and RandomForestClassifier<br>
+Now we run a final model based on the tuning results.<br>
+Final model chosen is a RandomForestClassifier with selector using selectkbest at k=7<br>
+This will create following files in ./outputs/:</p>
+- part_c_feature_scores.csv
+- part_c_final_config.csv
+- part_c_final_test.csv
+- part_c_models.csv
+- part_c_selectk.csv
+- part_c_threshold.csv
+- part_c_tuning.csv<br>
 
-python part_d_segments.py
-    This file performs a segment check for the given data.
-    Segments check means to verify whether the segments provided in hubs.csv are factually correct.
-    This will create following files in ./outputs/:
-        hub_profile.csv
-        part_d_separation.csv
-        segment_profile.csv
-        tier_vs_segment_mismatch.csv
+python part_d_segments.py<br>
+<p>This file performs a segment check for the given data.<br>
+Segments check means to verify whether the segments provided in hubs.csv are factually correct.<br>
+This will create following files in ./outputs/:</p>
+- hub_profile.csv
+- part_d_separation.csv
+- segment_profile.csv
+- tier_vs_segment_mismatch.csv<br>
 
-python package_model.py
-    This will train a RandomForestClassifier with selecKbest selector in a pipeline for the given data.
-    Then this will create a model dump using joblib.
-    This will create following files in ./models/:
-        delay_model.pkl
-        delay_threshold.csv
-        feature_order.csv
-        impute_values.csv
-    This will create following files in ./outputs/:
-        part_d_reload_check.csv
+<p>python package_model.py<br>
+This will train a RandomForestClassifier with selecKbest selector in a pipeline for the given data.<br>
+Then this will create a model dump using joblib.<br>
+This will create following files in ./models/:</p>
+- delay_model.pkl
+- delay_threshold.csv
+- feature_order.csv
+- impute_values.csv<br>
+This will create following files in ./outputs/:
+- part_d_reload_check.csv<br>
 
-python predict_delay.py
-    This is the final part of the project that will take in ./data/new_shipments.csv as the test data
-    This will load the model that we created earlier and use that model to predict delaty in new_shipments data
-    This will only create one new fille that is:
-        ./outputs/new_shipment_actions.csv
+<p>python predict_delay.py<br>
+This is the final part of the project that will take in ./data/new_shipments.csv as the test data<br>
+This will load the model that we created earlier and use that model to predict delaty in new_shipments data<br>
+This will only create one new fille that is:</p>
+- ./outputs/new_shipment_actions.csv
 
 **Final running instructions in order:**
-
-pip install -r requirements.txt
-python part_a_clean_eda.py
-python part_b_regression.py
-python part_c_classification.py
-python part_d_segments.py
-python package_model.py
-python predict_delay.py
+<br>
+<p>pip install -r requirements.txt<br>
+python part_a_clean_eda.py<br>
+python part_b_regression.py<br>
+python part_c_classification.py<br>
+python part_d_segments.py<br>
+python package_model.py<br>
+python predict_delay.py</p>
 
 # Operations recommendation
-Escalate segments   -   delay rate:
-Hub13   -   0.46
-Hub15   -   0.36
-Hub17   -   0.46
-Hub18   -   0.38
-Hub19   -   0.62
-Hub20   -   0.48
-Hub21   -   0.40
-Hub23   -   0.44
-Hub24   -   0.54
+<p>Escalate segments   -   delay rate:<br>
+Hub13   -   0.46<br>
+Hub15   -   0.36<br>
+Hub17   -   0.46<br>
+Hub18   -   0.38<br>
+Hub19   -   0.62<br>
+Hub20   -   0.48<br>
+Hub21   -   0.40<br>
+Hub23   -   0.44<br>
+Hub24   -   0.54</p>
 
-Tier mismatches:
-HUB07,Watch,Kolkata,1
-HUB13,Escalate,Nagpur,2
-HUB15,Escalate,Kochi,2
-HUB22,Watch,Dehradun,3
+Tier mismatches:<br>
+HUB07,Watch,Kolkata,1<br>
+HUB13,Escalate,Nagpur,2<br>
+HUB15,Escalate,Kochi,2<br>
+HUB22,Watch,Dehradun,3<br>
 
-These tiers should keep track of their deliveries more closely, hire more drivers or get more delivery vehicles if needs. Or change their tier.
+These tiers should keep track of their deliveries more closely, hire more drivers or get more delivery vehicles if needs. Or change their tier.<br>
 
-Delayed deliveries:
-For every 10 flagged delayed deliveries, 6.9 were actually delayed.
-For every 10 delayed parcels, 7.5 are caught.
+Delayed deliveries:<br>
+For every 10 flagged delayed deliveries, 6.9 were actually delayed.<br>
+For every 10 delayed parcels, 7.5 are caught.<br>
 
-Of the 48 new parcels, 8 were flagged to be delayed, with all of them needing to be escalated to the hub manager.
+Of the 48 new parcels, 8 were flagged to be delayed, with all of them needing to be escalated to the hub manager.<br>
 
-Why K=3?:
-    Even though K=4 and K=5 had shown slightly better results, both of them had at least one cluster that was smaller than 6.
-    For a dataset of 24, it having a cluster with cluster size smaller than 6 means that those clusters were not meaningfully distinct enough. And thus, K=3 was considered a better choice.
+<p>*Why K=3?*:<br>
+Even though K=4 and K=5 had shown slightly better results, both of them had at least one cluster that was smaller than 6.<br>
+For a dataset of 24, it having a cluster with cluster size smaller than 6 means that those clusters were not meaningfully distinct enough. And thus, K=3 was considered a better choice.</p>
 
 # Production plan
 **Production readiness**
@@ -200,18 +200,18 @@ Why K=3?:
 3. Customer support calls per week
 
 **Retraining schedule**
-Models should be retrained with fresh data every 2 weeks(14 days)
-During sale events such as 15-28 september; regional managers should keep a close look into any delays and keep a track of it. In case of underperformance, the models should be trained on new data every 2 days.
-Compare the data with similar sale events from the past.
-*Data-drift*: Data drift here can be due to mismatch in data representations and the features used in different regions.
+<p>Models should be retrained with fresh data every 2 weeks(14 days)<br>
+During sale events such as 15-28 september; regional managers should keep a close look into any delays and keep a track of it. In case of underperformance, the models should be trained on new data every 2 days.<br>
+Compare the data with similar sale events from the past.<br>
+*Data-drift*: Data drift here can be due to mismatch in data representations and the features used in different regions.</p>
 
 # Limitations
-*Synthetic data*: The data used in this project is synthetic, as such this is not an accurate representation of the real world application.
-The number of delayed parcels is also quite low(10) so it does not provide the best representation of real world application.
+<p>*Synthetic data*: The data used in this project is synthetic, as such this is not an accurate representation of the real world application.<br>
+The number of delayed parcels is also quite low(10) so it does not provide the best representation of real world application.</p>
 
-*Real-world limitations*: Training data here cannot fully capture the real world limitations for a delivery company.Many factors such as traffic conditions, time of the day for delivery run with their respective locations, driver experience, Number of drivers/vehicles and their availability, time of the year, weather related delays etc. were not accounted for in this project. Those factors can often time be make or break for delivery companies.
-A better way to work would be by comparing the data for deliveries at different time of the year and understand the pattern, thus making different predictions and different recommendations based on dynamic conditions.
+<p>*Real-world limitations*: Training data here cannot fully capture the real world limitations for a delivery company.Many factors such as traffic conditions, time of the day for delivery run with their respective locations, driver experience, Number of drivers/vehicles and their availability, time of the year, weather related delays etc. were not accounted for in this project. Those factors can often time be make or break for delivery companies.<br>
+A better way to work would be by comparing the data for deliveries at different time of the year and understand the pattern, thus making different predictions and different recommendations based on dynamic conditions.</p>
 
-*Very few actual delays*: Very few acual delays are present in the test data set i.e. new_shipments.csv. As such the systems in this project did not get tested to their limits. It's hard to say that this system will be reliable when its deployed in production because the testing was not extensive enough with only 10 delays being present.
+<p>*Very few actual delays*: Very few acual delays are present in the test data set i.e. new_shipments.csv. As such the systems in this project did not get tested to their limits. It's hard to say that this system will be reliable when its deployed in production because the testing was not extensive enough with only 10 delays being present.</p>
 
-*Predictive reasoning*: Some places can have more delays due to rain whereas in some places rain doesn't affect the deliveries at all, but when a regression model is training it only sees the rain data and not that it affects one place more than the others. This sort of data mismatch is difficult to handle and thus this repo does not address that either.
+<p>*Predictive reasoning*: Some places can have more delays due to rain whereas in some places rain doesn't affect the deliveries at all, but when a regression model is training it only sees the rain data and not that it affects one place more than the others. This sort of data mismatch is difficult to handle and thus this repo does not address that either.</p>
