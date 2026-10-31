@@ -3,22 +3,22 @@
 
 # Data Findings:
 
-(i) which service type is delayed most often and at what rate
-The most delayed serviced seems to be "Express" with a delay rate of 0.4897.
+1. Which service type is delayed most often and at what rate?<br>
+The most delayed serviced seems to be "Express" with a delay rate of 0.4897.<br>
 
-(ii) how delay rate changes from Tier 1 to Tier 3
-Delay rate in tier1 regions is very low at 0.04.
-Delay rate in tier3 regions is 0.44, almost half of the deliveries seem to be delayed.
+2. How delay rate changes from Tier 1 to Tier 3?<br>
+<p>Delay rate in tier1 regions is very low at 0.04.<br>
+Delay rate in tier3 regions is 0.44, almost half of the deliveries seem to be delayed.</p>
 
-(iii) how it changes across distance bands
-At lowest distance band (0-200km) has a very low delay rate of 0.0219.
-AS the distance increases, delay rate keeps increasing as well.
-At 600km+ distance, delay rate is 0.8523, which means almost all deliveries are delayed.
+3. How it changes across distance bands?<br>
+<p>At lowest distance band (0-200km) has a very low delay rate of 0.0219.<br>
+AS the distance increases, delay rate keeps increasing as well.<br>
+At 600km+ distance, delay rate is 0.8523, which means almost all deliveries are delayed.</p>
 
-(iv) the three columns most strongly correlated with delivery_hours — rank the columns of part_a_correlations.csv by absolute correlation, exclude delivery_hours itself, and quote each signed value to four decimals
-1. promised_hours = 0.837
-2. is_delayed - distance_km = 0.545
-3. distance_km = 0.401
+4. the three columns most strongly correlated with delivery_hours:<br>
+- promised_hours = 0.837
+- is_delayed - distance_km = 0.545
+- distance_km = 0.401
 
 
 
