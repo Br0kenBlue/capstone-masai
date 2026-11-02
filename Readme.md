@@ -70,24 +70,23 @@ But accuracy being at 0.87 means the model is fairly confident in its prediction
 # How to run
 first execute the following code:<br>
 
-pip install -r requirements.txt<br>
+> pip install -r requirements.txt<br>
 This will make sure that your environment has the exact libraries installed as used in this project.<br>
 
-python generate_data.py<br>
+> python generate_data.py<br>
 This will generate the data as is asked.<br>
 
-<p>python part_a_clean_eda.py<br>
-This is start the first part of the project which is EDA - elementary data analysis<br>
+> python part_a_clean_eda.py<br>
+<p>This is start the first part of the project which is EDA - elementary data analysis<br>
 it makes use of a custom file shipment_prep.py in ./src/ to clean the data as is provided.<br>
 This will create 3 new files in ./outputs/:</p>
-<ol>
-    <li>part_a_checks.csv</li>
-    <li>part_a_correlations.csv</li>
-    <li>part_a_delay_by_group.csv</li>
-</ol>
 
-<p>python part_b_regression.py<br>
-This piece of code does all the regression tasks of the project.<br>
+- part_a_checks.csv
+- part_a_correlations.csv
+- part_a_delay_by_group.csv
+
+> python part_b_regression.py
+<p>This piece of code does all the regression tasks of the project.<br>
 It train 4 different regression models on the given data and outputs the results.<br>
 It also runs an experimental LinearRegression model to check which learning rate works the best in this case.<br>
 It runs a cross validation score check on the data using LinearRegression and GradientBoostRegressor with train + validation set data.<br>
@@ -95,14 +94,15 @@ Then finally it runs the final chosen model.<br>
 In this case the final chosen model was LinearRegression because of best score in RMSE of 4.5235<br>
 This file contains a lot of functions but all functions have been initialized at the bottom of the file.<br>
 This will create following files in ./outputs/:</p>
+
 - part_b_checks.csv
 - part_b_cv.csv
 - part_b_gb_learning_rate.csv
 - part_b_metrics.csv
 - part_b_tree_depth.csv<br>
 
-<p>python part_c_classification.py<br>
-This piece of code does all the classification tasks of the project.<br>
+> python part_c_classification.py
+<p>This piece of code does all the classification tasks of the project.<br>
 It trains DecisionTreeClassifier, LogisticRegression, and RandomForestClassifier on the given data.<br>
 It trains multiple DecisionTreeClassifier with different depth values and selects the best of them.<br>
 It trains a RandomForestClassifier with selectkbest for multiple different values of k.<br>
@@ -114,6 +114,7 @@ Now we select the best params based on the previous three models GridSearchcv, R
 Now we run a final model based on the tuning results.<br>
 Final model chosen is a RandomForestClassifier with selector using selectkbest at k=7<br>
 This will create following files in ./outputs/:</p>
+
 - part_c_feature_scores.csv
 - part_c_final_config.csv
 - part_c_final_test.csv
@@ -122,41 +123,45 @@ This will create following files in ./outputs/:</p>
 - part_c_threshold.csv
 - part_c_tuning.csv<br>
 
-python part_d_segments.py<br>
+> python part_d_segments.py
 <p>This file performs a segment check for the given data.<br>
 Segments check means to verify whether the segments provided in hubs.csv are factually correct.<br>
 This will create following files in ./outputs/:</p>
+
 - hub_profile.csv
 - part_d_separation.csv
 - segment_profile.csv
 - tier_vs_segment_mismatch.csv<br>
 
-<p>python package_model.py<br>
-This will train a RandomForestClassifier with selecKbest selector in a pipeline for the given data.<br>
+> python package_model.py
+<p>This will train a RandomForestClassifier with selecKbest selector in a pipeline for the given data.<br>
 Then this will create a model dump using joblib.<br>
 This will create following files in ./models/:</p>
+
 - delay_model.pkl
 - delay_threshold.csv
 - feature_order.csv
 - impute_values.csv<br>
-This will create following files in ./outputs/:
+This will create following files in ./outputs/:<br>
 - part_d_reload_check.csv<br>
 
-<p>python predict_delay.py<br>
-This is the final part of the project that will take in ./data/new_shipments.csv as the test data<br>
+> python predict_delay.py<br>
+<p>This is the final part of the project that will take in ./data/new_shipments.csv as the test data<br>
 This will load the model that we created earlier and use that model to predict delaty in new_shipments data<br>
 This will only create one new fille that is:</p>
+
 - ./outputs/new_shipment_actions.csv
 
 **Final running instructions in order:**
 <br>
-<p>pip install -r requirements.txt<br>
-python part_a_clean_eda.py<br>
-python part_b_regression.py<br>
-python part_c_classification.py<br>
-python part_d_segments.py<br>
-python package_model.py<br>
-python predict_delay.py</p>
+
+> pip install -r requirements.txt
+> python part_a_clean_eda.py<br>
+> python part_b_regression.py<br>
+> python part_c_classification.py<br>
+> python part_d_segments.py<br>
+> python package_model.py<br>
+> python predict_delay.py</p>
 
 # Operations recommendation
 <p>Escalate segments   -   delay rate:<br>
