@@ -155,7 +155,7 @@ This will only create one new fille that is:</p>
 **Final running instructions in order:**
 <br>
 
-> pip install -r requirements.txt
+> pip install -r requirements.txt<br>
 > python part_a_clean_eda.py<br>
 > python part_b_regression.py<br>
 > python part_c_classification.py<br>
