@@ -80,9 +80,11 @@ This will generate the data as is asked.<br>
 This is start the first part of the project which is EDA - elementary data analysis<br>
 it makes use of a custom file shipment_prep.py in ./src/ to clean the data as is provided.<br>
 This will create 3 new files in ./outputs/:</p>
-- part_a_checks.csv
-- part_a_correlations.csv
-- part_a_delay_by_group.csv
+<ol>
+    <li>part_a_checks.csv</li>
+    <li>part_a_correlations.csv</li>
+    <li>part_a_delay_by_group.csv</li>
+</ol>
 
 <p>python part_b_regression.py<br>
 This piece of code does all the regression tasks of the project.<br>
