@@ -71,10 +71,10 @@ But accuracy being at 0.87 means the model is fairly confident in its prediction
 first execute the following code:<br>
 
 > pip install -r requirements.txt<br>
-This will make sure that your environment has the exact libraries installed as used in this project.<br>
+<p>This will make sure that your environment has the exact libraries installed as used in this project.</p>
 
 > python generate_data.py<br>
-This will generate the data as is asked.<br>
+<p>This will generate the data as is asked.</p>
 
 > python part_a_clean_eda.py<br>
 <p>This is start the first part of the project which is EDA - elementary data analysis<br>
